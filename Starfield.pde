@@ -1,4 +1,5 @@
 Particle [] group;
+
 void setup()
 {	
 	size(600,600);
@@ -13,7 +14,7 @@ void setup()
 		else {
 			group[i] = new NormalParticle();
 		}
-		//group[i]= new NormalParticle();
+
 	}
 }
 void draw()
@@ -24,7 +25,14 @@ void draw()
 		group[i].show();
 	}
 }
-class NormalParticle implements Particle
+
+interface Particle
+{
+	public void show();
+	public void move();
+}
+
+class NormalParticle implements Particle //uses an interface
 {
 	double myX, myY, mySpeed, myAngle;
 	int myColor;
@@ -44,17 +52,12 @@ class NormalParticle implements Particle
 	}
 
 	void show(){
-		//background(0);
 		noStroke();
 		fill(myColor);
 		ellipse((float)myX,(float)myY,4,4);
 	}
 }
-interface Particle
-{
-	public void show();
-	public void move();
-}
+
 class OddballParticle implements Particle //uses an interface
 {
 	double myX, myY, mySpeed, myAngle;
@@ -79,6 +82,7 @@ class OddballParticle implements Particle //uses an interface
 
 	}
 }
+
 class JumboParticle extends NormalParticle 	//uses an inheritance
 {
 	void show() {
